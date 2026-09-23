@@ -1,0 +1,191 @@
+@import "tailwindcss";
+@import "./components/styles/theme.css";
+@import 'leaflet/dist/leaflet.css';
+
+:root {
+  --text: #334155;
+  --text-h: #0f172a;
+  --bg: #fff;
+  --border: #e2e8f0;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+/* Keep the app light even when the OS is in dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #334155;
+    --text-h: #0f172a;
+    --bg: #fff;
+    --border: #e2e8f0;
+    --code-bg: #f4f3ec;
+    --accent: #aa3bff;
+    --accent-bg: rgba(170, 59, 255, 0.1);
+    --accent-border: rgba(170, 59, 255, 0.5);
+    --social-bg: rgba(244, 243, 236, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+body {
+  margin: 0;
+  color-scheme: light;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+/* ============================================
+   HANDA KA BA — Hero Background Utility
+   ============================================ */
+.hero-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/illustrations/hero-bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.85;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-background > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   HANDA KA BA — Design Tokens
+   ============================================ */
+:root {
+  /* Philippine Flag Colors */
+  --color-ph-blue:   #0038A8;
+  --color-ph-red:    #CE1126;
+  --color-ph-yellow: #FCD116;
+
+  /* Disaster Colors */
+  --color-flood:       #1e40af;
+  --color-earthquake:  #ea580c;
+  --color-typhoon:     #475569;
+  --color-landslide:   #78350f;
+  --color-heat:        #dc2626;
+
+  /* Urgency */
+  --color-critical: #ef4444;
+  --color-high:     #f97316;
+  --color-medium:   #eab308;
+
+  /* Typography */
+  --font-heading: 'Poppins', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+}
+
+.leaflet-default-icon-path {
+  background-image: url('https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png');
+}
+
+/* Improve touch targets on mobile */
+button, input, select, textarea {
+  min-height: 44px; /* iOS recommended */
+}
+
+/* Fix viewport scaling */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Improve scrolling performance */
+.scrollable {
+  -webkit-overflow-scrolling: touch;
+}
